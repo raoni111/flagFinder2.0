@@ -1,0 +1,95 @@
+@import './assets/config/color.scss';
+@import './assets/config/mixins.scss';
+.App {
+  font-size: 1.5rem;
+  background-color: $secondary-color-dark-mode;
+  .header-content {
+
+    @include displayFlex(row, space-between, center);
+    height: 10vh;
+    background-color: $primary-color-dark-mode;
+    box-shadow: 0px 5px 5px $shadow-box-dark-mode;
+    z-index: 1;
+    h1 {
+      font-size: 2.5rem;
+      margin: 0rem 6rem 0rem;
+      color: $primary-font-color-dark-mode;
+    }
+    .mode-content {
+      h1 {
+        font-size: 1.5rem;
+      }
+    }
+  }
+  .body-content {
+    width: 100%;
+    min-height: 90vh;
+    padding: 3rem 7rem 3rem;
+    background-color: transparent;
+    z-index: 0;
+    .search-nav-content {
+      @include displayFlex(row, space-between, center);
+      width: 100%;
+      margin: 2rem 0rem 5rem;
+      .search-input-content {
+        position: relative;
+        @include displayFlex(row, start, center);
+        width: 400px;
+        padding: 1rem;
+        border-radius: 5px;
+        background-color: $primary-color-dark-mode;
+        .search-button {
+          @include displayFlex(row, center, center);
+          width: fit-content;
+          cursor: pointer;
+          background-color: transparent;
+          border: none;
+          .search-icon-button {
+            color: $primary-font-color-dark-mode;
+          }
+        }
+        .search-input {
+          width: 100%;
+          margin-left: 1rem;
+          border: none;
+          outline: none;
+          font-size: 1.5rem;
+          color: $primary-font-color-dark-mode;
+          background-color: transparent;
+          &::placeholder {
+            color: $primary-font-color-dark-mode;
+          }
+        }
+        #option-group-countries {
+          overflow: hidden;
+          position: absolute;
+          top: 44px;
+          left: 0px;
+          width: 100%;
+          border-radius: 5px;
+          box-shadow: 4px 4px 5px $shadow-box-dark-mode;
+          background-color: $primary-color-dark-mode;
+          &.display-false {
+            height: 0px;
+          }
+          .country-list {
+            z-index: 1;
+            li {
+              cursor: pointer;
+              @include displayFlex(row, start, center);
+              padding: 1rem 1.5rem 1rem;
+              width: 100%;
+              color: $primary-font-color-dark-mode;
+              &:hover {
+                background-color: darken($primary-color-dark-mode, 3);
+              }
+              .option-image {
+                margin-right: 1rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

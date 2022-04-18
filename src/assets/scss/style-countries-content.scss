@@ -1,0 +1,42 @@
+@import '../config/color.scss';
+@import '../config/mixins.scss';
+.contry-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 3rem;
+  max-width: 100%;
+  color: $primary-font-color-dark-mode;
+  &#one-content {
+    grid-template-columns: 280px;
+  }
+  .contry-card {
+    @include displayFlex(column, start, start);
+    overflow: hidden;
+    width: 100%;
+    height: 350px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 5px $shadow-box-dark-mode;
+    background-color: $primary-color-dark-mode;
+    .contry-image-content {
+      width: 100%;
+      img {
+        width: 100%;
+        height: 200px;
+      }
+    }
+    .contry-name-content {
+      margin-bottom: 1rem;
+    }
+    .contry-information-content {
+      padding: 2rem;
+      li {
+        h1 {
+          font-size: 1.5rem;
+          span {
+            color: $secondary-font-color-dark-mode;
+          }
+        }
+      }
+    }
+  }
+}
