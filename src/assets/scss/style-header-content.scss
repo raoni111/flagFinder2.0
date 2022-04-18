@@ -1,0 +1,20 @@
+@import '../config/mixins.scss';
+@import '../config/color.scss';
+.header-content {
+  position: relative;
+  @include displayFlex(row, space-between, center);
+  height: 10vh;
+  background-color: $primary-color-dark-mode;
+  box-shadow: 0px 5px 5px $shadow-box-dark-mode;
+  z-index: 1;
+  h1 {
+    font-size: 2.5rem;
+    margin: 0rem 6rem 0rem;
+    color: $primary-font-color-dark-mode;
+  }
+  .mode-content {
+    h1 {
+      font-size: 1.5rem;
+    }
+  }
+}

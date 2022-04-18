@@ -1,12 +1,13 @@
 /* eslint-disable react/jsx-key */
 import React, { useEffect, useState } from 'react';
-import './App.scss';
 import { Country, OptionList } from './class/interface/type-country';
 import SearchCountries from './class/search-countries';
 import CountriesContent from './components/countries-content';
 import { FiSearch } from 'react-icons/fi';
-import { IoIosArrowDown } from 'react-icons/io';
 import SelectOptionOfRegion from './components/select-option-region';
+import HeaderComponent from './components/header-component';
+import CountryInformation from './components/country-information';
+import './App.scss';
 
 const searchCountries = new SearchCountries();
 
@@ -16,6 +17,7 @@ function App(): JSX.Element {
   const [optionList, setOptionList] = useState<OptionList[]>();
   const [reagion, setReagion] = useState<string>('Filter By Reagion');
   const [displayOptionList, setDisplayOptionList] = useState<boolean>(false);
+  const [displayCountryInfo, setDisplayCountryInfo] = useState<boolean>(false);
 
   useEffect(() => {
     searchCountries.searchCountries().then((countries) => {
@@ -64,6 +66,15 @@ function App(): JSX.Element {
     setCountries(countriesFilterByRegion);
   };
 
+  const displayCountryInfoFunction = (): void => {
+    setDisplayCountryInfo(!displayCountryInfo);
+    if (!displayCountryInfo) {
+      document.documentElement.style.overflow = 'hidden';
+      return;
+    }
+    document.documentElement.style.overflow = 'auto';
+  };
+
   const hundleClickCountryList = (
     e: React.MouseEvent<HTMLLIElement, MouseEvent>,
   ) => {
@@ -78,14 +89,11 @@ function App(): JSX.Element {
 
   return (
     <div className="App" onClick={hundleClick}>
-      <header className="header-content">
-        <div className="title-content">
-          <h1>Where in the World?</h1>
-        </div>
-        <div className="mode-content">
-          <h1>Light Mode</h1>
-        </div>
-      </header>
+      <CountryInformation
+        displayCountryInfo={displayCountryInfo}
+        displayCountryInfoFunction={displayCountryInfoFunction}
+      />
+      <HeaderComponent />
       <main className="body-content">
         <nav className="search-nav-content">
           <div className="search-input-content">
@@ -132,7 +140,10 @@ function App(): JSX.Element {
             reagion={reagion}
           />
         </nav>
-        <CountriesContent countries={countries} />
+        <CountriesContent
+          displayCountryInfoFunction={displayCountryInfoFunction}
+          countries={countries}
+        />
       </main>
     </div>
   );

@@ -6,6 +6,7 @@ import { Country } from '../class/interface/type-country';
 
 interface Props {
   countries: Readonly<Country[]> | undefined;
+  displayCountryInfoFunction(): void;
 }
 
 export default function CountriesContent(props: Props): JSX.Element {
@@ -17,6 +18,7 @@ export default function CountriesContent(props: Props): JSX.Element {
     <div
       className="contry-content"
       id={countries?.length === 1 ? 'one-content' : ''}
+      onClick={props.displayCountryInfoFunction}
     >
       {countries?.map((value, index) => {
         return (
