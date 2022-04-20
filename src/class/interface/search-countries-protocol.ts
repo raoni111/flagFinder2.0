@@ -10,4 +10,5 @@ export default interface SearchCountriesProtocol {
   searchCountry(countryName: string): Readonly<Country[]>;
   searchAssist(str: string): OptionList[] | undefined;
   countriesFilterByReagion(reagionName: string): Readonly<Country[]>;
+  searchByCIOC(cioc: string): string | undefined;
 }

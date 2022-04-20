@@ -11,23 +11,24 @@
   }
   .contry-card {
     @include displayFlex(column, start, start);
+    cursor: pointer;
     overflow: hidden;
     width: 100%;
     height: 350px;
     border-radius: 10px;
     box-shadow: 4px 4px 5px $shadow-box-dark-mode;
     background-color: $primary-color-dark-mode;
-    .contry-image-content {
+    .contry-image-content-card {
       width: 100%;
       img {
         width: 100%;
         height: 200px;
       }
     }
-    .contry-name-content {
+    .contry-name-content-card {
       margin-bottom: 1rem;
     }
-    .contry-information-content {
+    .contry-information-content-card {
       padding: 2rem;
       li {
         h1 {

@@ -6,7 +6,6 @@ import CountriesContent from './components/countries-content';
 import { FiSearch } from 'react-icons/fi';
 import SelectOptionOfRegion from './components/select-option-region';
 import HeaderComponent from './components/header-component';
-import CountryInformation from './components/country-information';
 import './App.scss';
 
 const searchCountries = new SearchCountries();
@@ -17,7 +16,6 @@ function App(): JSX.Element {
   const [optionList, setOptionList] = useState<OptionList[]>();
   const [reagion, setReagion] = useState<string>('Filter By Reagion');
   const [displayOptionList, setDisplayOptionList] = useState<boolean>(false);
-  const [displayCountryInfo, setDisplayCountryInfo] = useState<boolean>(false);
 
   useEffect(() => {
     searchCountries.searchCountries().then((countries) => {
@@ -59,20 +57,10 @@ function App(): JSX.Element {
     const li = e.target as HTMLElement;
     const liId = li.id;
     if (!liId) return;
-    console.log('teste');
     setReagion(liId);
     const countriesFilterByRegion =
       searchCountries.countriesFilterByReagion(liId);
     setCountries(countriesFilterByRegion);
-  };
-
-  const displayCountryInfoFunction = (): void => {
-    setDisplayCountryInfo(!displayCountryInfo);
-    if (!displayCountryInfo) {
-      document.documentElement.style.overflow = 'hidden';
-      return;
-    }
-    document.documentElement.style.overflow = 'auto';
   };
 
   const hundleClickCountryList = (
@@ -89,10 +77,6 @@ function App(): JSX.Element {
 
   return (
     <div className="App" onClick={hundleClick}>
-      <CountryInformation
-        displayCountryInfo={displayCountryInfo}
-        displayCountryInfoFunction={displayCountryInfoFunction}
-      />
       <HeaderComponent />
       <main className="body-content">
         <nav className="search-nav-content">
@@ -141,7 +125,7 @@ function App(): JSX.Element {
           />
         </nav>
         <CountriesContent
-          displayCountryInfoFunction={displayCountryInfoFunction}
+          searchCountries={searchCountries}
           countries={countries}
         />
       </main>

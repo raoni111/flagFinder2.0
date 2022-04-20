@@ -4,10 +4,12 @@
   font-size: 1.5rem;
   background-color: $secondary-color-dark-mode;
   .body-content {
+    position: relative;
+    top: 10vh;
     width: 100%;
     min-height: 90vh;
     padding: 3rem 7rem 3rem;
-    background-color: transparent;
+    background-color: $secondary-color-dark-mode;
     z-index: 0;
     .search-nav-content {
       @include displayFlex(row, space-between, center);

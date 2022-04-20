@@ -35,6 +35,16 @@ export default class SearchCountries implements SearchCountriesProtocol {
     return this.countries;
   }
 
+  public searchByCIOC(cioc: string): string | undefined {
+    let countryName;
+    this.countries.map((country) => {
+      if (country.cioc === cioc && country.cioc !== '') {
+        countryName = country.name.common;
+      }
+    });
+    return countryName;
+  }
+
   public searchAssist(str: string): OptionList[] | undefined {
     if (str === '') return undefined;
     const optionList: OptionList[] = [];
