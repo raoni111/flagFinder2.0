@@ -9,12 +9,18 @@ import CountryInformation from './country-information';
 interface Props {
   countries: Readonly<Country[]> | undefined;
   searchCountries: SearchCountriesProtocol;
+  lightMode: boolean;
 }
 
 export default function CountriesContent(props: Props): JSX.Element {
   const [countries, setCountries] = useState<Readonly<Country[]> | undefined>();
   const [displayCountryInfo, setDisplayCountryInfo] = useState<boolean>(false);
   const [country, setcountry] = useState<Country>();
+  const [lightMode, setLightMode] = useState(props.lightMode);
+
+  useEffect(() => {
+    setLightMode(props.lightMode);
+  }, [props.lightMode]);
 
   useEffect(() => {
     setCountries(props.countries);
@@ -36,12 +42,14 @@ export default function CountriesContent(props: Props): JSX.Element {
     <div
       className="contry-content"
       id={countries?.length === 1 ? 'one-content' : ''}
+      light-mode={`${lightMode}`}
     >
       <CountryInformation
         searchCoutries={props.searchCountries}
         displayCountryInfo={displayCountryInfo}
         displayCountryInfoFunction={displayCountryInfoFunction}
         country={country}
+        lightMode={lightMode}
       />
       {countries?.map((value, index) => {
         return (

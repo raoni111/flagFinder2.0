@@ -15,11 +15,17 @@ interface Props {
   ): void;
   country: Country | undefined;
   searchCoutries: SearchCountriesProtocol;
+  lightMode: boolean;
 }
 
 export default function CountryInformation(props: Props): JSX.Element {
   const [displayCountryInfo, setDisplayCountryInfo] = useState<boolean>();
   const [country, setCountry] = useState<Country>();
+  const [lightMode, setLightMode] = useState(props.lightMode);
+
+  useEffect(() => {
+    setLightMode(props.lightMode);
+  }, [props.lightMode]);
 
   useEffect(() => {
     setDisplayCountryInfo(props.displayCountryInfo);
@@ -45,7 +51,6 @@ export default function CountryInformation(props: Props): JSX.Element {
   };
 
   const displayBorderCountries = (border: string[] | undefined): string[] => {
-    console.log(border);
     const borderCountries: string[] = [];
     border?.map((cioc) => {
       const borderCountriesSearch = props.searchCoutries.searchByCIOC(cioc);
@@ -53,7 +58,6 @@ export default function CountryInformation(props: Props): JSX.Element {
         borderCountries.push(borderCountriesSearch);
       }
     });
-    console.log(borderCountries);
     return borderCountries;
   };
 
@@ -61,6 +65,7 @@ export default function CountryInformation(props: Props): JSX.Element {
     <div
       className="country-information-element"
       id={`display-${displayCountryInfo}`}
+      light-mode={`${lightMode}`}
     >
       <button onClick={(e) => props.displayCountryInfoFunction(e)}>
         <BiArrowBack size="20" className="icon-content" />
@@ -70,7 +75,7 @@ export default function CountryInformation(props: Props): JSX.Element {
         <div className="country-flag-content">
           <img src={country?.flags.svg} alt={country?.name.common} />
         </div>
-        <div className="inforamtions-content">
+        <div className="informations-content">
           <h1>{country?.name.common}</h1>
           <ul className="country-information-ul">
             <li className="information-li">
@@ -104,7 +109,9 @@ export default function CountryInformation(props: Props): JSX.Element {
                   displayBorderCountries(country?.borders).map(
                     (countryName) => {
                       return (
-                        <li className="border-country-li">{countryName}</li>
+                        <li className="border-country-li" key={countryName}>
+                          {countryName}
+                        </li>
                       );
                     },
                   )

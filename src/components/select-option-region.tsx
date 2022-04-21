@@ -7,12 +7,18 @@ interface Props {
     e: React.MouseEvent<HTMLUListElement, MouseEvent>,
   ): void;
   reagion: string;
+  lightMode: boolean;
 }
 
 export default function SelectOptionOfRegion(props: Props): JSX.Element {
   const [reagion, setReagion] = useState<string>('Filter By Reagion');
   const [displaySelectOption, setDisplaySelectOption] =
     useState<boolean>(false);
+  const [lightMode, setLightMode] = useState(props.lightMode);
+
+  useEffect(() => {
+    setLightMode(props.lightMode);
+  }, [props.lightMode]);
 
   useEffect(() => {
     setReagion(props.reagion);
@@ -25,6 +31,7 @@ export default function SelectOptionOfRegion(props: Props): JSX.Element {
     <div
       className={`select-opition-of-region-content display-${displaySelectOption}`}
       onClick={displaySelectOptionFunction}
+      light-mode={`${lightMode}`}
     >
       <h3 className="reagion-name-content">
         <span className="reagion-name">{reagion}</span>

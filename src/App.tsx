@@ -16,6 +16,7 @@ function App(): JSX.Element {
   const [optionList, setOptionList] = useState<OptionList[]>();
   const [reagion, setReagion] = useState<string>('Filter By Reagion');
   const [displayOptionList, setDisplayOptionList] = useState<boolean>(false);
+  const [lightMode, setLightMode] = useState(false);
 
   useEffect(() => {
     searchCountries.searchCountries().then((countries) => {
@@ -33,7 +34,6 @@ function App(): JSX.Element {
       | React.KeyboardEvent<HTMLInputElement>
       | React.KeyboardEvent<HTMLDivElement>,
   ) => {
-    console.log(e.code);
     if (e.code === 'Enter') {
       hundleSearchCountry();
     }
@@ -75,10 +75,17 @@ function App(): JSX.Element {
     setDisplayOptionList(false);
   };
 
+  const setLightModeFunction = () => {
+    setLightMode(!lightMode);
+  };
+
   return (
     <div className="App" onClick={hundleClick}>
-      <HeaderComponent />
-      <main className="body-content">
+      <HeaderComponent
+        setLightModeFunction={setLightModeFunction}
+        lightMode={lightMode}
+      />
+      <main className="body-content" light-mode={`${lightMode}`}>
         <nav className="search-nav-content">
           <div className="search-input-content">
             <button
@@ -105,7 +112,10 @@ function App(): JSX.Element {
               <ul className="country-list">
                 {optionList?.map((option) => {
                   return (
-                    <li onClick={(e) => hundleClickCountryList(e)}>
+                    <li
+                      onClick={(e) => hundleClickCountryList(e)}
+                      key={option.name}
+                    >
                       <img
                         className="option-image"
                         src={option.img}
@@ -122,11 +132,13 @@ function App(): JSX.Element {
           <SelectOptionOfRegion
             countriesFilterByReagion={countriesFilterByReagion}
             reagion={reagion}
+            lightMode={lightMode}
           />
         </nav>
         <CountriesContent
           searchCountries={searchCountries}
           countries={countries}
+          lightMode={lightMode}
         />
       </main>
     </div>

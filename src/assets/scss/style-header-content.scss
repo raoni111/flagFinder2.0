@@ -7,6 +7,7 @@
   height: 10vh;
   background-color: $primary-color-dark-mode;
   box-shadow: 0px 5px 5px $shadow-box-dark-mode;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
   z-index: 1;
   h1 {
     font-size: 2.5rem;
@@ -16,6 +17,44 @@
   .mode-content {
     h1 {
       font-size: 1.5rem;
+    }
+  }
+  .mode-content {
+    @include displayFlex(row , center, center);
+    margin-right: 5rem;
+    .mode-button {
+      @include displayFlex(row , center, center);
+      font-size: 1.4rem;
+      border: none;
+      background-color: transparent;
+      color: $primary-font-color-dark-mode;
+      span {
+        margin-right: 0.5rem;
+        .mode-icon {
+          @include displayFlex(row , center, center);
+        }
+      }
+    }
+  }
+  &[light-mode="true"] {
+    background-color: $primary-color-light-mode;
+    box-shadow: 0px 5px 5px $shadow-box-light-mode;
+    h1 {
+      color: $primary-font-color-light-mode;
+    }
+    .mode-content {
+      .mode-button {
+        color: $primary-font-color-light-mode;
+      }
+    }
+  }
+  @media (max-width: 520px) {
+    h1 {
+      font-size: 1.6rem;
+      margin: 0rem 3rem 0rem;
+    }
+    .mode-content {
+      margin-right: 3rem;
     }
   }
 }

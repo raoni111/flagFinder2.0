@@ -2,6 +2,7 @@
 @import '../config/mixins.scss';
 
 .country-information-element {
+  overflow-y: auto;
   display: none;
   position: fixed;
   top: 10vh;
@@ -9,6 +10,7 @@
   z-index: 2;
   padding: 4rem;
   background-color: $primary-color-dark-mode;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
   &#display-true {
     display: block;
     width: 100%;
@@ -32,10 +34,11 @@
     @include displayFlex(row, start, start);
     .country-flag-content {
       img {
+        border-radius: 5px;
         width: 500px;
       }
     }
-    .inforamtions-content {
+    .informations-content {
       margin-left: 3rem;
       h1 {
         margin-bottom: 1rem;
@@ -69,6 +72,73 @@
             height: 40px;
             border-radius: 5px;
             background-color: $secondary-color-dark-mode;
+          }
+        }
+      }
+    }
+  }
+  &[light-mode="true"] {
+    background-color: $primary-color-light-mode;
+    button {
+      color: $primary-font-color-light-mode;
+      border: 1px solid $shadow-box-light-mode;
+      box-shadow: 3px 3px 5px $shadow-box-light-mode;
+      background-color: $secondary-color-light-mode;
+    }
+    .country-information-content {
+      .country-flag-content {
+        img {
+          border: 2px solid $shadow-box-light-mode;
+        }
+      }
+      .informations-content {
+        .country-information-ul {
+          .information-li {
+            span {
+              color: $secondary-font-color-light-mode;
+            }
+          }
+        }
+        .border-country-content {
+          .border-country-ul {
+            .border-country-li {
+              border: 1px solid $shadow-box-light-mode;
+              box-shadow: 3px 3px 5px $shadow-box-light-mode;
+              background-color: $secondary-color-light-mode;
+            }
+          }
+        }
+      }
+    }
+  }
+  @media (max-width: 1020px) {
+    .country-information-content {
+      @include displayFlex(column, center, center);
+      .country-flag-content {
+        @include displayFlex(column, center, center);
+        img {
+          width: 100%;
+        }
+      }
+      .informations-content {
+        margin: 2rem 0rem 0rem;
+        .country-information-ul {
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+  }
+  @media (max-width: 550px) {
+    .country-information-content {
+      .informations-content {
+        .country-information-ul {
+          grid-template-columns: 1fr
+        }
+        .border-country-content {
+          @include displayFlex(column, start, start);
+          .border-country-ul {
+            margin-top: 1rem;
           }
         }
       }

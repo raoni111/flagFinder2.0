@@ -10,6 +10,7 @@
   padding: 1rem;
   border-radius: 5px;
   background-color: $primary-color-dark-mode;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
   .reagion-name-content {
     @include displayFlex(row, center, center);
     font-weight: 200;
@@ -54,6 +55,26 @@
         color: $primary-font-color-dark-mode;
         &:hover {
           background-color: darken($primary-color-dark-mode, 3);
+        }
+      }
+    }
+  }
+  &[light-mode="true"] {
+    border: 1px solid $shadow-box-light-mode;
+    box-shadow: 0px 5px 5px $shadow-box-light-mode;
+    background-color: $primary-color-light-mode;
+    .reagion-name-content {
+      color: $primary-font-color-light-mode;
+    }
+    .select-opition-content {
+      box-shadow: 4px 4px 5px $shadow-box-light-mode;
+      background-color: $primary-color-light-mode;
+      .select-opition {
+        li {
+          color: $primary-font-color-light-mode;
+          &:hover {
+            background-color: darken($primary-color-light-mode, 3);
+          }
         }
       }
     }

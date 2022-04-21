@@ -6,6 +6,7 @@
   gap: 3rem;
   max-width: 100%;
   color: $primary-font-color-dark-mode;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
   &#one-content {
     grid-template-columns: 280px;
   }
@@ -35,6 +36,26 @@
           font-size: 1.5rem;
           span {
             color: $secondary-font-color-dark-mode;
+          }
+        }
+      }
+    }
+  }
+  &[light-mode="true"] {
+      color: $primary-font-color-light-mode;
+    &#one-content {
+      grid-template-columns: 280px;
+    }
+    .contry-card {
+      border: 1px solid $shadow-box-light-mode;
+      box-shadow: 4px 4px 5px $shadow-box-light-mode;
+      background-color: $primary-color-light-mode;
+      .contry-information-content-card {
+        li {
+          h1 {
+            span {
+              color: $secondary-font-color-light-mode;
+            }
           }
         }
       }
