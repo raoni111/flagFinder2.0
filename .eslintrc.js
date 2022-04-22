@@ -28,5 +28,6 @@ module.exports = {
         endOfLine: 'auto',
       },
     ],
+    'react/jsx-key': 'off',
   },
 };

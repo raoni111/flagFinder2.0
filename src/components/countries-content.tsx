@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-key */
 import React, { useState, useEffect } from 'react';
 import '../assets/scss/style-countries-content.scss';
 import formatNumberOfPeople from '../assets/utils/formatNumberOfPeople';

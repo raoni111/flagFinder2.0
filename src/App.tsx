@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-key */
 import React, { useEffect, useState } from 'react';
 import { Country, OptionList } from './class/interface/type-country';
 import SearchCountries from './class/search-countries';
